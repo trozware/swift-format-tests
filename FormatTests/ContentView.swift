@@ -17,15 +17,14 @@ struct ContentView: View {
   func createTestData() {
     data = Array(0 ..< 1000).map { "Row #\($0)" }
 
-
   }
 
   func downloadData() {
     let address = "https://zenquotes.io/api/quotes"
     let url = URL(string: address)!
-    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    let task = URLSession.shared.dataTask(with: url) { data, _, _ in
 
-      if let data = data,let string = String(data: data, encoding: .utf8) {
+      if let data = data, let string = String(data: data, encoding: .utf8) {
           print(string)
         }
       }
@@ -37,7 +36,7 @@ struct ContentView: View {
     """
     This is a multiline string,
     that is a computed property which can be tricky to format.
-    
+
     It has nothing to do with the list on the side, but I wanted to see how swift-format would handle it.
     """
   }
@@ -56,4 +55,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
